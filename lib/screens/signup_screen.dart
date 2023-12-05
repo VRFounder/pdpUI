@@ -1,14 +1,14 @@
-import "package:flutter/material.dart";
-import "package:pdpui/screens/signup_screen.dart";
+import 'package:flutter/material.dart';
+import 'package:pdpui/screens/home_screen.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,18 +28,16 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               const Padding(
                 padding: EdgeInsets.all(20.0),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    SizedBox(
-                      height: 200.0,
-                    ),
+                    SizedBox(height: 120.0,),
                     Text(
-                      "Login",
+                      "Sign Up",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 40,
@@ -49,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 10,
                     ),
                     Text(
-                      "Welcome back",
+                      "Welcome",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
@@ -85,22 +83,26 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         child: Column(
                           children: [
-                            for (String hint in ["Email", "Password"])
+                            for (String hint in [
+                              "Full name",
+                              "Email",
+                              "Phone",
+                              "Password"
+                            ])
                               TextField(
                                 decoration: InputDecoration(
                                   border: UnderlineInputBorder(
-                                    borderRadius: (hint == "Email")
+                                    borderRadius: (hint == "Fullname")
                                         ? const BorderRadius.only(
-                                            topLeft: Radius.circular(10),
-                                            topRight: Radius.circular(10),
-                                          )
+                                      topLeft: Radius.circular(10),
+                                      topRight: Radius.circular(10),
+                                    )
                                         : (hint == "Password")
-                                            ? const BorderRadius.only(
-                                                bottomLeft: Radius.circular(10),
-                                                bottomRight:
-                                                    Radius.circular(10),
-                                              )
-                                            : BorderRadius.zero,
+                                        ? const BorderRadius.only(
+                                      bottomLeft: Radius.circular(10),
+                                      bottomRight: Radius.circular(10),
+                                    )
+                                        : BorderRadius.zero,
                                   ),
                                   fillColor: Colors.white,
                                   filled: true,
@@ -121,24 +123,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       ElevatedButton(
                         onPressed: () {},
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                              Colors.blueGrey.shade700), // Set background color
+                          backgroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey.shade700), // Set background color
                           minimumSize: MaterialStateProperty.all<Size>(
-                              const Size(
-                                  250, 50)), // Set minimum width and height
+                              const Size(250, 50)), // Set minimum width and height
                         ),
-                        child: const Text(
-                          "Login",
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
+                        child: const Text("SignUp", style: TextStyle(color: Colors.white, ),),
                       ),
                       const SizedBox(
                         height: 20,
                       ),
                       Text(
-                        "Login with SNS",
+                        "Sign up with SNS",
                         style: TextStyle(
                             color: Colors.grey.shade500,
                             fontWeight: FontWeight.bold,
@@ -152,7 +147,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           for (MapEntry<String, Color> socialNetwork in {
                             "Facebook": Colors.blue,
-                            "Github": Colors.black
+                            "Google": Colors.red,
+                            "Apple": Colors.black
                           }.entries)
                             Expanded(
                               child: Padding(
@@ -161,9 +157,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   onPressed: () {},
                                   style: ButtonStyle(
                                     backgroundColor:
-                                        MaterialStateProperty.all<Color>(
-                                            socialNetwork
-                                                .value), // Set background color
+                                    MaterialStateProperty.all<Color>(
+                                        socialNetwork.value), // Set background color
                                   ),
                                   child: Text(
                                     socialNetwork.key,
@@ -181,7 +176,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Don't have an account?",
+                            "Already have an account?",
                             style: TextStyle(
                                 color: Colors.grey.shade500,
                                 fontWeight: FontWeight.bold,
@@ -193,10 +188,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const SignupScreen()));
+                                      const HomeScreen()));
                             },
                             child: const Text(
-                              "Sign Up",
+                              "Login",
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
@@ -205,6 +200,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ],
                       ),
+
                     ],
                   ),
                 ),
